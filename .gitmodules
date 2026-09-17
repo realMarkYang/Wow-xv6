@@ -1,0 +1,3 @@
+[submodule "doc"]
+	path = doc
+	url = https://github.com/jamesrxian/xv6-chinese.git
