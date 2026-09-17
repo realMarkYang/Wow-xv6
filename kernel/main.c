@@ -6,11 +6,16 @@
 
 volatile static int started = 0;
 
+int i = 1;
+
+
 // start() jumps here in supervisor mode on all CPUs.
 void
 main()
 {
   if(cpuid() == 0){
+    i = i<<1;
+
     consoleinit();
     printfinit();
     printf("\n");
@@ -32,6 +37,8 @@ main()
     __sync_synchronize();
     started = 1;
   } else {
+    i = i<<1;
+
     while(started == 0)
       ;
     __sync_synchronize();
@@ -40,6 +47,6 @@ main()
     trapinithart();   // install kernel trap vector
     plicinithart();   // ask PLIC for device interrupts
   }
-
+  // printf("cpu cnt: %b\n",i>>1);
   scheduler();        
 }

@@ -134,7 +134,8 @@ runcmd(struct cmd *cmd)
 int
 getcmd(char *buf, int nbuf)
 {
-  write(2, "$ ", 2);
+  char *prefix = "\033[0;32m➜\033[0m  ";
+  write(2, prefix, strlen(prefix));
   memset(buf, 0, nbuf);
   gets(buf, nbuf);
   if(buf[0] == 0) // EOF

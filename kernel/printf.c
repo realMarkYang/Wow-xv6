@@ -38,7 +38,7 @@ printint(long long xx, int base, int sign)
     x = xx;
 
   i = 0;
-  do {
+  do {  
     buf[i++] = digits[x % base];
   } while((x /= base) != 0);
 
@@ -105,7 +105,11 @@ printf(char *fmt, ...)
     } else if(c0 == 'l' && c1 == 'l' && c2 == 'x'){
       printint(va_arg(ap, uint64), 16, 0);
       i += 2;
-    } else if(c0 == 'p'){
+    } 
+    else if(c0 == 'b'){ //print binary 
+      printint(va_arg(ap, uint64), 2, 0);
+    }
+    else if(c0 == 'p'){
       printptr(va_arg(ap, uint64));
     } else if(c0 == 'c'){
       consputc(va_arg(ap, uint));
