@@ -107,3 +107,11 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+//get free memory
+uint64
+sys_freemem(void)
+{
+  return get_freemem();
+}
+
